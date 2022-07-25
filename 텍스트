@@ -1,0 +1,260 @@
+
+
+<-->
+
+#3.8 - CSS in Javascript part Three (class말고 classList를 통해 일부만 수정하기)
+class를 쓰면 아예 갈아 엎어버리기 때문에 이를 해결하기 위해 classList를 사용한다.
+
+ if(h1.classList.contains(clickedClass)) {
+        h1.classList.remove(clickedClass);
+    } else {
+        h1.classList.add(clickedClass) = clickedClass;
+    }
+
+..
+
+toggle은 토큰이 존재하면 토큰제거
+토큰존재 하지않으면 토큰 추가
+
+ex)
+toggle은 h1의 classList에 clicked class가 이미있는지 확인하여
+만약있다면 toggle 이 clicked를 제거해준다
+만약 class name이 존재하지 않는다면 toggle은 classname 추가
+
+<-->
+
+
+#3.7 - CSS in Javascript part Two (CSS를 사용하기)
+
+
+<-->
+
+#3.6 - CSS in Javascript (JS에서 CSS편집)
+const h1 = document.querySelector(".hello:first-child h1");
+
+function handleTitleClick() {
+    if(h1.style.color === "blue") {
+        h1.style.color = "tomato";
+    } else {
+        h1.style.color = "blue";
+    }
+}   
+
+h1.addEventListener("click", handleTitleClick);
+
+---
+
+const h1 = document.querySelector(".hello:first-child h1");
+
+function handleTitleClick() {
+    const currentColor = h1.style.color;
+    let newColor;
+    if(currentColor === "blue") {
+        newColor = "tomato";
+    } else {
+        newColor = "blue";
+    }
+    h1.style.color = newColor;
+}   
+
+h1.addEventListener("click", handleTitleClick);
+
+<-->
+
+#3.5 - More Events
+title.onclick = handleTitleClick;
+title.addEventListener("click", handleTitleClick);
+위의 두 코드는 같은 기능을 한다. 작성하는 방법이 이렇게 2가지임
+
+const h1 = document.querySelector(".hello:first-child h1");
+
+function handleTitleClick() {
+    h1.style.color = "red";
+}
+
+function handleMouseEnter() {
+    h1.innerText = "Mouse is here!!";
+}
+
+function handleMouseLeave() {
+    h1.innerText = "Mouse is gone!!"
+}
+
+function handleWindowResize() {
+        document.body.style.backgroundColor = "tomato";
+        // document의 body, head, title 이런것들은 중요하기 때문에 이렇게 바로 끌고올 수 있다.
+        // 즉, document.div 이런식으로 중요하지 않은것들을 끌고오는것은 x
+}
+
+function handleWindowCopy() {
+    alert("복사됨!!");
+}
+
+function handleWindowOffline() {
+    alert("SOS no WIFI");
+}
+
+function handleWindowOnline() {
+    alert("All GOOOD");
+}
+
+h1.addEventListener("click", handleTitleClick);
+h1.addEventListener("mouseenter", handleMouseEnter);
+h1.addEventListener("mouseleave", handleMouseLeave);
+
+window.addEventListener("resize", handleWindowResize);
+window.addEventListener("copy", handleWindowCopy);
+window.addEventListener("offline", handleWindowOffline);
+window.addEventListener("online", handleWindowOnline);
+
+<-->
+
+console.dir(끌고온 HTML요소)
+: 여기서 사용가능한 이벤트 핸들러를 확인가능하다!
+: property중 on이라는 이름이 앞에 붙어있는 것들이 바로 eventListener이다.
+몰론 이것들을 이제 JS에서 사용할 때는 on을 제외하고 사용해준다. ex)onclick (x) => click(o)
+
+const title = document.querySelector(".hello:first-child h1");
+
+function handleTitleClick() {
+    title.style.color = "blue";
+}
+
+function handleMouseEnter() {
+    title.innerText = "Mouse is here!!";
+}
+
+function handleMouseLeave() {
+    title.innerText = "Mouse is gone!!"
+}
+
+title.addEventListener("click", handleTitleClick);
+title.addEventListener("mouseenter", handleMouseEnter);
+title.addEventListener("mouseleave", handleMouseLeave);
+
+<-->
+
+import해놓은 JS파일이 있기 때문에 HTML을 끌어올 수 있는 것!
+
+const title = document.querySelector(".hello:first-child h1");
+
+function handleTitleClick() {
+    title.style.color = "blue";
+}
+
+title.addEventListener("click", handleTitleClick);
+
+<--->
+
+최고봉은 querySelector
+document.querySelector : 특정 CSS선택자를 통해서 요소를 가지고 온다. 일치하는 요소가 없으면 null반환
+document.querySelectorAll : 기본적인 동작방법은 위와 같지만 모든 객체를 Array형태로 반환함
+
+document.getElementById
+document.getElementByClassName
+
+<-->
+
+// 자바스크립트에서 document를 통해 html을 읽어올 수 있다.
+// 자바스크립트에서 document객체와, element들을 통해 정보를 긁어올 수 있다.
+// document는 자바스크립트 관점에서의 HTML을 뜻한다.
+const title = document.getElementById("title");
+
+title.innerText = "Get it~!"
+
+<-->
+
+const age = parseInt(prompt("몇 살 이세용?"));
+
+//  console.log(isNaN(age));
+// isNaN이 아니다 = 숫자이다 = false
+
+if(isNaN(age) || age < 0) {
+    console.log("양의 숫자를 제대로 다시 입력해주세요.") 
+} else if (age < 18) {
+    console.log("너무 어리시네요.")
+} else if (age >= 18 && age <= 50) {
+    console.log("음주 가능하네요.")
+} else {
+    console.log("음주는 가능한데....조심하세요!")
+}
+
+<-->
+
+// return, 코드에서 결과를 원하는 경우
+// return을 하게 되면 어떤 함수를 실행했을 때 함수결과를 대체함
+// return하는 순간 함수가 종료됨.
+const age = 100;
+function calcaulateKrAge(ageOfForeigner) {
+    return ageOfForeigner + 2;
+}
+
+const krAge = calcaulateKrAge(age);
+console.log(krAge);
+
+<-->
+
+const calculator = {
+    add : function(a, b) {
+        alert(a+b);
+    },
+    substract : function(a, b) {
+        alert(a-b);
+    },
+    multiply : function(a, b) {
+        alert(a*b);
+    },
+    divide : function(a, b) {
+        alert(a/b);
+    }
+};
+
+console.log(calculator.add(1,2));
+
+<-->
+
+// 함수
+// function plus(firstNumber, secondNumber) {
+//     console.log(firstNumber + secondNumber);
+// }
+
+// plus(10, 100);
+
+// const player = {
+//     name : "newbie123",
+//     sayHello : function(otherPlayer) {
+//         console.log("Hello!!" + " Nice to meet you " + otherPlayer);
+//     },
+// };
+
+// console.log(player.name);
+// player.sayHello("newbie12345");
+
+// 객체, 특정 대상에 대한 다양한 정보를 담을 때
+// const는 수정할 수 없다. 그러나 우리는 객체 안의 무엇인가를 수정하는 것이다.
+// 여기서 에러는 player라는 객체를 하나의 값으로 업데이트 하려고 할 때 발생한다.
+// const player = {
+//     name : "newbie",
+//     points : 20,
+//     level : 100,
+// };
+// console.log(player);
+// console.log(player.level);
+// player.hp = 1000;
+// console.log(player);
+// delete player.hp;
+// console.log(player);
+
+
+// 배열, 특정 주제에 대한 비슷한 대상을 담을 때
+// const Array = [1, 2, 3, 4, 5]
+// console.log(Array);
+// Array.push(6)
+// console.log(Array);
+
+// const A = null;
+// let something;
+// console.log(A);
+// null은 아무것도 아닌 상태로 채운 것, 즉 값은 있는데 아무것도 아닌 상태
+// null은 의도적으로 비어있음을 표현하는 것!
+// console.log(something);

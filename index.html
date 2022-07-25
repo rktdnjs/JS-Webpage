@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Momentum</title>
+</head>
+<body>
+    <h2 id="clock">00:00:00</h2>
+
+    <!-- input의 유효성 검사를 작동시키기 위해서는 form안에 input이 있어야 함 -->
+    <form class="hidden" id="login-form">
+        <input required maxlength="15" type="text" placeholder="What is your name?"/>
+        <button>Log In</button>
+    </form>
+    <h1 id="greeting" class="hidden"></h1>
+
+    <form id="todo-form">
+        <input type="text" placeholder="Write a To Do and Press Enter!"/>
+    </form>
+    <ul id = "todo-list"></ul>
+
+
+    <div id="quote">
+        <span></span>
+        <span></span>
+    </div>
+
+    <script src="/JS/app.js"> </script>
+    <script src="/JS/clock.js"> </script>
+    <script src="/JS/quotes.js"> </script>
+    <script src="/JS/backgrounds.js"> </script>
+    <script src="/JS/todo.js"> </script>
+</body>
+</html>
